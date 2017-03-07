@@ -25,9 +25,12 @@
   inputValue = document.querySelector('#aqi-input');
   displayValue = document.querySelector('#aqi-display');
   btn.addEventListener('click',function(){
-      displayValue.innerHTML = inputValue.value;
+      displayValue.textContent = inputValue.value;
+      //textContenttextContent的取值实际上就是对innerHTML的属性值进行一系列处理，然后返回，具体步骤如下
+        //1. 对HTML标签进行剔除；
+        //2. 将ASCII实体转换为相应的字符。
   })
-  
+
 })();
 
 </script>
