@@ -35,9 +35,17 @@ var aqiData = [
 
 // 参考以下示例代码，页面加载后，将提供的空气质量数据数组，按照某种逻辑（比如空气质量大于60）进行过滤筛选，最后将符合条件的数据按照一定的格式要求显示在网页上
 
-var oldArray = aqiData.filter(function(index){
-    return index[1]>60;
-});//筛选出大于60的数组
+    var oldArray = aqiData.filter(function(index){
+        return index[1]>60;
+    });//筛选出大于60的数组
+    var newArray = oldArray.sort(function(Num1,Num2){
+        return Num2[1]-Num1[1];
+    });//按照从大到小重新排序
+    var oDom = document.querySelector('#aqi-list');
+    for(var i=0;i<newArray.length;i++){
+        //console.log(i);
+        oDom.innerHTML += "<li>"+"第"+(i+1)+"名:"+newArray[i][0]+"空气质量:"+newArray[i][1]+"</li>";
+    }
 
 })();
 
