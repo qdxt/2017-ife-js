@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+      span{
+          color:#abcdef;
+          padding:5px;
+          margin-right: 5px;
+      }
+    </style>
+</head>
+<body>
+    
+<!--有一个input输入框，以及4个操作按钮
+点击"左侧入"，将input中输入的数字从左侧插入队列中；
+点击"右侧入"，将input中输入的数字从右侧插入队列中；
+点击"左侧出"，读取并删除队列左侧第一个元素，并弹窗显示元素中数值；
+点击"右侧出"，读取并删除队列又侧第一个元素，并弹窗显示元素中数值；
+点击队列中任何一个元素，则该元素会被从队列中删除-->
+<input type="text" name="" value="" placeholder="请输入文字" id="domInput">
+<button id="leftIn">左侧入</button>
+<button id="rightIn">右侧入</button>
+<button id="leftOut">左侧出</button>
+<button id="rightOout">右侧出</button>
+<div id="target"></div>
+</body>
+<script>
+        var domTarget    = document.getElementById('target');
+        var domInput     = document.getElementById('domInput');
+        var newArray = [];
+        //渲染页面
+        function render(method){
+            return function(){
+                if(typeof parseInt(domInput.value)=="number"){
+                    alert('请输入数字');
+                    domInput.value="";
+                }else{
+                    newArray[method](domInput.value);
+                    domTarget.innerHTML="";//清楚原来内容
+                    for(var i = 0; i<newArray.length; i++){
+                        domTarget.innerHTML+="<span>"+newArray[i]+"</span>";
+                    }
+                }
+                
+            }
+        }
+
+        function init(domId){
+            var objectDom = document.getElementById(domId);
+            switch (objectDom) {
+            case leftIn:
+               objectDom.onclick=render("unshift");
+                break;
+            case rightIn: 
+                objectDom.onclick=render("push");
+                break;
+            case leftOut: 
+                objectDom.onclick=render("shift");
+                break; 
+            case rightOout:
+                objectDom.onclick=render("pop");
+                break;
+            default:
+                console.log('error');
+            }
+        };
+        init("leftIn");//调用函数
+        init("rightIn");//调用函数
+        init("leftOut");//调用函数
+        init("rightOout");//调用函数
+</script>
+</html>
