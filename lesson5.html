@@ -5,9 +5,11 @@
     <title>Document</title>
     <style>
       span{
-          color:#abcdef;
-          padding:5px;
+          color:#fff;
           margin-right: 5px;
+          display: inline-block;
+          background: red;
+          margin-top: 10px;
       }
     </style>
 </head>
@@ -29,19 +31,22 @@
         var domTarget    = document.getElementById('target');
         var domInput     = document.getElementById('domInput');
         var newArray = [];
-        var reg = /[1-9][1-9]/;
+        var reg = /[1-9][0-9]/;
         //渲染页面
         function render(method){
             return function(){
                 if(reg.test(domInput.value)==false){
                     alert('请输入10-100之间的数字');
                     domInput.value="";
+                }else if(newArray.length>60){
+                    alert('超过范围了!')
                 }else{
                     newArray[method](domInput.value);
                     domTarget.innerHTML="";//清楚原来内容
                     for(var i = 0; i<newArray.length; i++){
-                        domTarget.innerHTML+="<span>"+newArray[i]+"</span>";
-                    }
+                        domTarget.innerHTML+="<span style='height:"+newArray[i]+"px'>"+newArray[i]+"</span>";
+                       
+                    };
                 }
                 
             }
