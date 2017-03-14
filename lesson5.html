@@ -10,6 +10,7 @@
           display: inline-block;
           background: red;
           margin-top: 10px;
+          font-size: 12px;
       }
     </style>
 </head>
@@ -25,11 +26,13 @@
 <button id="rightIn">右侧入</button>
 <button id="leftOut">左侧出</button>
 <button id="rightOout">右侧出</button>
+<button id="quickSort">快速排序</button>
 <div id="target"></div>
 </body>
 <script>
         var domTarget    = document.getElementById('target');
         var domInput     = document.getElementById('domInput');
+        var domQuick     = document.getElementById('quickSort');
         var newArray = [];
         var reg = /[1-9][0-9]/;
         //渲染页面
@@ -75,5 +78,35 @@
         init("rightIn");//调用函数
         init("leftOut");//调用函数
         init("rightOout");//调用函数
+
+        var a = [2,4,5,63,4,5,63,2,4,43];
+ 
+function quicksort(arr)
+{
+    if (arr.length == 0)
+        return [];
+ 
+    var left = new Array();
+    var right = new Array();
+    var pivot = arr[0];
+ 
+    for (var i = 1; i < arr.length; i++) {
+        if (arr[i] < pivot) {
+           left.push(arr[i]);
+        } else {
+           right.push(arr[i]);
+        }
+    }
+ 
+    return quicksort(left).concat(pivot, quicksort(right));
+}
+ domQuick.addEventListener('click',function(){
+     var quicksortarray = quicksort(newArray);
+     domTarget.innerHTML="";//清楚原来内容
+     for(var i = 0; i<quicksortarray.length; i++){
+        domTarget.innerHTML+="<span style='height:"+quicksortarray[i]+"px'>"+quicksortarray[i]+"</span>";
+    };
+
+ })
 </script>
 </html>
