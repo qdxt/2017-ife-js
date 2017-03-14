@@ -29,12 +29,12 @@
         var domTarget    = document.getElementById('target');
         var domInput     = document.getElementById('domInput');
         var newArray = [];
-        var reg = /^\d+(\.\d+)?$/;
+        var reg = /[1-9][1-9]/;
         //渲染页面
         function render(method){
             return function(){
                 if(reg.test(domInput.value)==false){
-                    alert('请输入数字');
+                    alert('请输入10-100之间的数字');
                     domInput.value="";
                 }else{
                     newArray[method](domInput.value);
